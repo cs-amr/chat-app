@@ -1,11 +1,12 @@
 import ReceivedMessage from "./RecivedMessage";
 import SentMessage from "./SentMessage";
 import { useRef } from "react";
+
 export default function Chat() {
   const messagesRef = useRef(null);
   let ref = messagesRef.current;
   if (ref) {
-    ref.scrollTop = ref.scrollHeight - ref?.clientHeight;
+    // ref.scrollTop = ref.scrollHeight - ref?.clientHeight;
   }
 
   return (

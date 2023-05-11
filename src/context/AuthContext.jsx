@@ -1,4 +1,3 @@
-import { collection, doc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import {
   createContext,
@@ -7,17 +6,15 @@ import {
   ReactNode,
   useEffect,
 } from "react";
-import { auth, db } from "../firebase";
+import { auth } from "../firebase";
 
 export const AuthContext = createContext({
-  user: null,
   authUser: null,
   setAuthUser: () => {},
 });
 
 export function AuthProvider({ children }) {
   const [authUser, setAuthUser] = useState(null);
-  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
@@ -29,7 +26,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, authUser, setAuthUser }}>
+    <AuthContext.Provider value={{ authUser, setAuthUser }}>
       {children}
     </AuthContext.Provider>
   );

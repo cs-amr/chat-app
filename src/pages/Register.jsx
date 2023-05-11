@@ -43,6 +43,7 @@ export default function Register() {
               "https://firebasestorage.googleapis.com/v0/b/chat-app-dfe5d.appspot.com/o/user_placeholder.png?alt=media&token=330d4aaf-71a2-44e6-93c6-d99b026ae83e",
             coverURL:
               "https://firebasestorage.googleapis.com/v0/b/chat-app-dfe5d.appspot.com/o/cover_placeholder.jpg?alt=media&token=40a2a922-97e4-4608-bd75-f4a03cd213d3",
+            chats: [],
           });
         });
 

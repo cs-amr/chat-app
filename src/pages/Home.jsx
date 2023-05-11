@@ -2,6 +2,7 @@ import Chat from "../components/Chat";
 import Tap from "../components/Tap";
 import Sidebar from "../components/Sidebar";
 import { useState } from "react";
+
 export default function Home() {
   const [currentTap, setCurrentTap] = useState("CHATS");
   const [darkMode, setDarkMode] = useState(true);

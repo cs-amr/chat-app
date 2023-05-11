@@ -1,13 +1,13 @@
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
-import { SyntheticEvent, useState } from "react";
+import { useState } from "react";
 import { useUser } from "../context/AuthContext";
 
 export default function Login() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const { user } = useUser();
-  if (user !== null) {
+  const { authUser, setAuthUser } = useUser();
+  if (authUser !== null) {
     navigate("/");
   }
 

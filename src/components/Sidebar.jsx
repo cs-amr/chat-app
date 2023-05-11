@@ -1,9 +1,11 @@
 import { getAuth, signOut } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useGlobal } from "../context/AppContext";
 
 export default function Sidebar({ setDarkMode, darkMode, setCurrentTap }) {
   const navigate = useNavigate();
+  const { user } = useGlobal();
   const [listOpen, setListOpen] = useState(false);
   function handleSignOut() {
     const auth = getAuth();
@@ -45,7 +47,7 @@ export default function Sidebar({ setDarkMode, darkMode, setCurrentTap }) {
             >
               <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
               />
             </svg>
@@ -84,6 +86,20 @@ export default function Sidebar({ setDarkMode, darkMode, setCurrentTap }) {
             </svg>
           </button>
         </li>
+        <li title="contacts" onClick={() => setCurrentTap("CONTACTS")}>
+          <button className="w-fit">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="21"
+              height="21"
+              fill="currentColor"
+              className="bi bi-people-fill"
+              viewBox="0 0 16 16"
+            >
+              <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+            </svg>
+          </button>
+        </li>
         <li className="lg:mt-auto" onClick={() => setDarkMode(!darkMode)}>
           {false ? (
             <button>
@@ -115,17 +131,16 @@ export default function Sidebar({ setDarkMode, darkMode, setCurrentTap }) {
         </li>
         <li className="relative">
           <button onClick={() => setListOpen(!listOpen)}>
-            <div className="w-10 h-10 rounded-full bg-green-400"></div>
+            <div className="w-10 h-10 rounded-full overflow-hidden">
+              <img src={user?.photoURL} alt="" className="h-12 object-cover" />
+            </div>
           </button>
           <div
             className={`absolute lg:left-0 -left-20 bottom-8 ${
               listOpen ? "block" : "hidden"
             }`}
           >
-            <div className="flex flex-col bg-bg-side border border-gray-900 p-2 text-dark-li w-fit text-left font-semibold">
-              <button>Profile</button>
-              <button>Settings</button>
-              <button className="whitespace-nowrap">Change Password</button>
+            <div className="flex flex-col bg-bg-side border border-gray-900  p-2 text-dark-li w-32 text-left font-semibold">
               <button onClick={handleSignOut}>Log out</button>
             </div>
           </div>
