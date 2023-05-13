@@ -5,6 +5,7 @@ import {
   onSnapshot,
   updateDoc,
   Timestamp,
+  deleteDoc,
 } from "firebase/firestore";
 import { useUser } from "../context/AuthContext";
 import ReceivedMessage from "./RecivedMessage";
@@ -56,6 +57,11 @@ export default function Chat() {
     }
     e.target.reset();
   }
+  async function deleteChat() {
+    const docRef = doc(db, "chats", chat.id);
+
+    deleteDoc(docRef);
+  }
   return (
     <div
       className={`bg-light-chat-bg dark:bg-dark-chat-bg w-full   bg-chat-pattern h-screen duration-300   ${
@@ -99,6 +105,13 @@ export default function Chat() {
               </p>
               {/* <div className="semibold">Active</div> */}
             </div>
+            <button
+              className="ml-auto border text-red-200 rounded border-red-200 p-2"
+              title="delete chat"
+              onClick={deleteChat}
+            >
+              delete
+            </button>
           </div>
         </div>
         <div className=" h-full items-end flex  ">
