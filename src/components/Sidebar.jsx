@@ -2,16 +2,24 @@ import { getAuth, signOut } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobal } from "../context/AppContext";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default function Sidebar({ setDarkMode, darkMode, setCurrentTap }) {
   const navigate = useNavigate();
-  const { user } = useGlobal();
+  const { user, setUser, setChat } = useGlobal();
   const [listOpen, setListOpen] = useState(false);
   function handleSignOut() {
     const auth = getAuth();
     signOut(auth)
       .then(() => {
         navigate("/login");
+        const userRef = doc(db, "users", user?.uid);
+        updateDoc(userRef, {
+          online: false,
+        });
+        setChat(null);
+        setUser(null);
       })
       .catch((error) => {
         console.log(error.message);
@@ -132,7 +140,11 @@ export default function Sidebar({ setDarkMode, darkMode, setCurrentTap }) {
         <li className="relative">
           <button onClick={() => setListOpen(!listOpen)}>
             <div className="w-10 h-10 rounded-full overflow-hidden">
-              <img src={user?.photoURL} alt="" className="h-12 object-cover" />
+              <img
+                src={user?.photoURL}
+                alt=""
+                className="h-12 w-12 object-cover"
+              />
             </div>
           </button>
           <div

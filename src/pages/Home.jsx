@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main
       className={`${
-        darkMode ? "dark" : ""
+        darkMode ? "dark bg-dark-bg" : ""
       } flex lg:flex-row flex-col-reverse h-screen`}
     >
       <Sidebar

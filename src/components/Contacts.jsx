@@ -1,5 +1,5 @@
 import { collection, getDocs } from "firebase/firestore";
-import ChatLink from "./ChatLink";
+import ContactLink from "./ContactLink";
 import { db } from "../firebase";
 import { useEffect, useState } from "react";
 import { useUser } from "../context/AuthContext";
@@ -28,12 +28,12 @@ export default function Contacts() {
           Contacts
         </h2>
       </div>
-      <div className="overflow-scroll  ">
-        <div className=" overflow-hidden">
+      <div className="  ">
+        <div className=" overflow-hidden ">
           {users &&
-            users.map((user, index) => {
-              if (user.uid === authUser.uid) return;
-              return <ChatLink user={user} key={index} />;
+            users.map((linkUser, index) => {
+              if (linkUser.uid === authUser.uid) return;
+              return <ContactLink linkUser={linkUser} key={index} />;
             })}
         </div>
       </div>

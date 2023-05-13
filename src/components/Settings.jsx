@@ -28,8 +28,8 @@ export default function Settings() {
     });
   }
   async function updatePhoto(e) {
-    const date = new Date().getTime();
-    const storageRef = ref(storage, `${user.username + date}`);
+    const date = new Date();
+    const storageRef = ref(storage, `${date}`);
     await uploadBytesResumable(storageRef, e.target.files[0]).then(() => {
       getDownloadURL(storageRef).then(async (downloadURL) => {
         console.log(downloadURL);
@@ -77,7 +77,7 @@ export default function Settings() {
           <img
             src={user?.photoURL}
             alt=""
-            className="border h-16 object-cover  rounded-full"
+            className="border h-16 w-16 object-cover  rounded-full"
           />
           <button className="absolute left-10 border-dark-bg-sec shadow top-4 p-1 my-6 mr-3 h-7 w-7 rounded-full font-semibold text-2xl text-light-h dark:text-white bg-gray-200 dark:bg-bg-side">
             <label htmlFor="photoFile">

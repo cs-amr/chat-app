@@ -6,6 +6,7 @@ export const AppContext = createContext();
 export default function AppProvider({ children }) {
   const [user, setUser] = useState();
   const { authUser } = useUser();
+  const [chat, setChat] = useState();
 
   useEffect(() => {
     if (authUser) {
@@ -15,7 +16,7 @@ export default function AppProvider({ children }) {
     }
   }, [authUser]);
   return (
-    <AppContext.Provider value={{ user, setUser }}>
+    <AppContext.Provider value={{ user, setUser, chat, setChat }}>
       {children}
     </AppContext.Provider>
   );

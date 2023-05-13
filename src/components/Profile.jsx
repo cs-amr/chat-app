@@ -17,7 +17,11 @@ export default function Profile() {
       </div>
       <div className="flex flex-col text-center justify-between -mt-6 border-b border-gray-600 text-light-p dark:text-dark-p">
         <div className=" w-16 h-16 rounded-full mx-auto overflow-hidden border ">
-          <img src={user?.photoURL} alt="" className="h-16 object-cover" />
+          <img
+            src={user?.photoURL}
+            alt=""
+            className="h-16 w-16  object-cover"
+          />
         </div>
         <p className="my-4 font-bold">{user?.userName}</p>
       </div>

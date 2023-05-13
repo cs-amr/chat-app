@@ -61,6 +61,7 @@ export default function Login() {
             }`}
             type="email"
             name="email"
+            defaultValue={"john99@gmail.com"}
             placeholder="Enter Your Email"
           />
           <label
@@ -75,6 +76,7 @@ export default function Login() {
             }`}
             type="password"
             name="password"
+            defaultValue={"johnpassword"}
             placeholder="Enter Your Password"
           />
           <button className="bg-active rounded-[.25rem] text-white my-8 w-full px-4 p-2">
