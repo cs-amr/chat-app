@@ -1,6 +1,6 @@
 export default function SentMessage({ msg, user }) {
   return (
-    <li className="ml-auto my-4 flex flex-col max-w-4xl w-[90%]">
+    <li className="ml-auto my-4 flex flex-col max-w-full break-words w-[90%]">
       <div className="mr-6 ml-auto mb-2 px-5 py-3 dark:bg-dark-sent-bg bg-light-sent-bg text-black dark:text-white w-fit shadow rounded">
         {" "}
         {msg.msgContent}{" "}
