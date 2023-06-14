@@ -1,6 +1,6 @@
 export default function ReceivedMessage({ msg, user }) {
   return (
-    <li className="my-4 flex flex-col max-w-4xl w-[90%]">
+    <li className="my-4 flex flex-col max-w-full break-words w-[90%]">
       <div className="ml-6  mb-2 px-5 py-3 rounded dark:bg-dark-received-bg bg-light-received-bg text-black dark:text-white w-fit shadow">
         {msg.msgContent}
       </div>
